@@ -1,0 +1,14 @@
+{
+  "name": "bbriggs-catfacts",
+  "version": "0.1.0",
+  "author": "bbriggs",
+  "summary": "Send cat facts to your friends!",
+  "license": "Apache 2.0",
+  "source": "https://github.com/bbriggs/puppet-catfacts.git",
+  "project_page": "https://github.com/bbriggs/puppet-catfacts",
+  "issues_url": "https://github.com/bbriggs/puppet-catfacts/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
