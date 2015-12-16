@@ -1,4 +1,4 @@
-define catfacts (
+define catfacts::schedule (
     $target,
     $sender,
     $user = "root", 
