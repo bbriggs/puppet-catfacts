@@ -35,7 +35,12 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class catfacts {
+class catfacts (
+    ) inherits catfacts::params {
 
+    package {'fortune':
+        ensure => 'installed',
+    }
 
 }
+
