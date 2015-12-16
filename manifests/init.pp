@@ -1,39 +1,56 @@
 # == Class: catfacts
 #
-# Full description of class catfacts here.
+# Send cat facts to your friends using the power of cron, fortune, and sendmail!
 #
 # === Parameters
 #
-# Document parameters here.
+# The main class has no parameters. The module is designed to be used
+# via the type catfacts::schedule.  
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*target*]
+#	String. Required. Email address of person with whom you just cannot wait to share 
+#   the joy of CAT FACTS!
+# 
+# [*sender*]
+#   String. Required. Email address you want displayed as the sender, so everyone
+#   knows exactly who sent them the cat facts, right?
+#
+# [*user*]
+#   String. Defaults to "root". Do you really want this running as root? Probably not.
+#   I don't know what users are running on your box, though, so I had to default to something
+#
+# [*minute*] and [*hour*]
+#   String. Defaults to "0" and "*" respectively. These are inputs to the cron job.
+#   I did not provide other cron options because people should receive cat facts at least daily. 
 #
 # === Variables
 #
 # Here you should define a list of variables that this module would require.
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
+# [*catfacts::params::fortune_location*]
+#	Location of the fortune binary
+#
+# [*catfacts::params::mailer_location*]
+#	Location of the sendmail binary
 #
 # === Examples
 #
-#  class { 'catfacts':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
+#  include catfacts
+#  catfacts::schedule{'cat_facts_for_dad':
+#		target		=> '5558675309@vtext.com',
+#		sender      => mailer@catfacts.com,
+#		user        => 'notroot',
+#		minute      => '*/5',
+#		hour		=> '*',
+#	}
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Bren Briggs <briggs.brenton@gmail.com>
 #
 # === Copyright
 #
-# Copyright 2015 Your name here, unless otherwise noted.
+# Copyright 2015 Bren Briggs, unless otherwise noted.
 #
 class catfacts (
     ) inherits catfacts::params {
