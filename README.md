@@ -1,4 +1,4 @@
-# catfacts
+# CAT FACTS!
 
 #### Table of Contents
 
@@ -6,7 +6,6 @@
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with catfacts](#setup)
     * [What catfacts affects](#what-catfacts-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with catfacts](#beginning-with-catfacts)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -15,65 +14,66 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+Send cat facts to your friends!
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+Have you ever wanted to send cat facts to your friends? Of course, because you love them so much. Who doesn't?
+Share your enthusiasm for Linux, Puppet, and cats all at once by sending your friend cat facts with this module. 
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
 
 ## Setup
 
 ### What catfacts affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+Catfacts installs `fortune` and expects sendmail to be present, but doesn't manage it. 
+Catfacts installs a cron job in the specified user's crontab. 
+Catfacts installs the database full of cat fact-y goodness to `/etc/catfacts`. 
 
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
 
 ### Beginning with catfacts
 
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+`include catfacts` to have it install fortune and the two small files needed to pull cat facts. 
+Declare a resource using the `catfacts::schedule` resource to start sending your friends cat facts throughout the day!
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+Example:
+```puppet
+    include catfacts
+
+    catfacts::schedule{'catfacts_for_dad':
+        target  => '5558675309@txt.att.net',
+        sender  => 'facts@catfacts.com',
+        user    => 'not_root',
+        minute  => '*/5',
+        hour    => '*'
+    }
+```
+### Parameters
+
+The main class has no parameters. The module is designed to be used via the type catfacts::schedule.  
+ [*target*]
+    String. Required. Email address of person with whom you just cannot wait to share the joy of CAT FACTS!
+
+ [*sender*]
+    String. Required. Email address you want displayed as the sender, so everyone knows exactly who sent them the cat facts, right?
+
+ [*user*]
+    String. Defaults to "root". Do you really want this running as root? Probably not. I don't know what users are running on your box, though, so I had to default to something
+
+ [*minute*] and [*hour*]
+    String. Defaults to "0" and "*" respectively. These are inputs to the cron job. I did not provide other cron options because people should receive cat facts at least daily. 
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+See above
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module has been ever so slightly tested on Ubuntu 14.04 and CentOS/RHEL 6.x
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Pull requests to the development branch are welcome. Find this code on Github:
+https://github.com/bbriggs/puppet-catfacts
