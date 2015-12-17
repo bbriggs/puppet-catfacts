@@ -61,13 +61,13 @@ class catfacts (
 
     file {'/etc/catfacts/catfacts':
         ensure  => 'file',
-        source  => 'file:///modules/catfacts/catfacts',
+        source  => 'puppet:///modules/catfacts/catfacts',
         require => File['/etc/catfacts'],
     }
 
     file {'/etc/catfacts/catfacts.dat':
         ensure  => 'file',
-        source  => 'file:///modules/catfacts/catfacts.dat',
+        source  => 'puppet:///modules/catfacts/catfacts.dat',
         require => File['/etc/catfacts'],
     }
     
