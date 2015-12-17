@@ -28,7 +28,7 @@ Share your enthusiasm for Linux, Puppet, and cats all at once by sending your fr
 
 Catfacts installs `fortune` and expects sendmail to be present, but doesn't manage it. 
 Catfacts installs a cron job in the specified user's crontab. 
-Catfacts installs the database full of cat fact-y goodness to `/etc/catfacts`. 
+Catfacts installs two small files full of cat fact-y goodness to `/etc/catfacts`. 
 
 
 ### Beginning with catfacts
