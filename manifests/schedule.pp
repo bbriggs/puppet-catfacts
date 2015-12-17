@@ -1,9 +1,9 @@
 define catfacts::schedule (
     $target,
     $sender,
-    $user = "root", 
-    $minute = "0",
-    $hour = "*",
+    $user = 'root', 
+    $minute = '0',
+    $hour = '*',
 ) {
         include catfacts
         include catfacts::params
