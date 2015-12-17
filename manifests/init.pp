@@ -55,18 +55,20 @@
 class catfacts (
     ) inherits catfacts::params {
 
-    file {'/etc/catfats':
+    file {'/etc/catfacts':
         ensure  => 'directory',
     }
 
     file {'/etc/catfacts/catfacts':
         ensure  => 'file',
-        content => file('catfacts/catfacts'),
+        source  => 'file:///modules/catfacts/catfacts',
+        require => File['/etc/catfacts'],
     }
 
     file {'/etc/catfacts/catfacts.dat':
-        ensire => 'file',
-        content => file('catfacts/catfacts.dat'),
+        ensure  => 'file',
+        source  => 'file:///modules/catfacts/catfacts.dat',
+        require => File['/etc/catfacts'],
     }
     
     package {'fortune':
