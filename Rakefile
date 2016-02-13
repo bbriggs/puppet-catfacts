@@ -58,7 +58,7 @@ end
 desc "Run syntax, lint, and spec tests."
 task :test => [
   :rubocop,
-  :lint,
+  #:lint,
   :spec,
   :metadata_lint,
   :syntax,
