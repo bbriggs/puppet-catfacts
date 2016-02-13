@@ -6,6 +6,8 @@ describe 'catfacts', :type => :class do
       :osfamily => 'Debian',
     } }
 
-    it { should create_class('catfacts') }
+    it { is_expected.to create_package('fortune') }
+    it { is_expected.to create_file('/etc/catfacts') }
+    it { is_expected.to create_file('/etc/catfacts.dat') }
   end
 end
