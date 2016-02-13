@@ -52,7 +52,7 @@
 #
 # Copyright 2015 Bren Briggs, unless otherwise noted.
 #
-class catfacts (
+class catfacts(
     ) inherits catfacts::params {
 
     file {'/etc/catfacts':
