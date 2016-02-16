@@ -8,6 +8,7 @@ describe 'catfacts', :type => :class do
 
     it { is_expected.to create_package('fortune') }
     it { is_expected.to create_file('/etc/catfacts') }
-    it { is_expected.to create_file('/etc/catfacts.dat') }
+    it { is_expected.to create_file('/etc/catfacts/catfacts') }
+    it { is_expected.to create_file('/etc/catfacts/catfacts.dat') }
   end
 end
