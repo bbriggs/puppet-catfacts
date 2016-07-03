@@ -4,7 +4,7 @@
   "version": "0.1.1",
   "author": "bbriggs",
   "summary": "Send cat facts to your friends!",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/bbriggs/puppet-catfacts.git",
   "project_page": "https://github.com/bbriggs/puppet-catfacts",
   "issues_url": "https://github.com/bbriggs/puppet-catfacts/issues",
