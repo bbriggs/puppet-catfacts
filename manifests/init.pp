@@ -5,12 +5,12 @@
 # === Parameters
 #
 # The main class has no parameters. The module is designed to be used
-# via the type catfacts::schedule.  
+# via the type catfacts::schedule.
 #
 # [*target*]
-#	String. Required. Email address of person with whom you just cannot wait to share 
+#	String. Required. Email address of person with whom you just cannot wait to share
 #   the joy of CAT FACTS!
-# 
+#
 # [*sender*]
 #   String. Required. Email address you want displayed as the sender, so everyone
 #   knows exactly who sent them the cat facts, right?
@@ -21,11 +21,9 @@
 #
 # [*minute*] and [*hour*]
 #   String. Defaults to "0" and "*" respectively. These are inputs to the cron job.
-#   I did not provide other cron options because people should receive cat facts at least daily. 
+#   I did not provide other cron options because people should receive cat facts at least daily.
 #
 # === Variables
-#
-# Here you should define a list of variables that this module would require.
 #
 # [*catfacts::params::fortune_location*]
 #	Location of the fortune binary
@@ -56,24 +54,30 @@ class catfacts (
     ) inherits catfacts::params {
 
     file {'/etc/catfacts':
-        ensure  => 'directory',
-    }
+      ensure => 'directory',
+      mode   => '0755',
+      owner  => 'root',
+      group  => 'root',
+    } ->
 
     file {'/etc/catfacts/catfacts':
-        ensure  => 'file',
-        source  => 'puppet:///modules/catfacts/catfacts',
-        require => File['/etc/catfacts'],
-    }
+      ensure  => 'file',
+      content => file('catfacts/catfacts'),
+      mode    => '0555',
+      owner   => 'root',
+      group   => 'root',
+    } ->
 
     file {'/etc/catfacts/catfacts.dat':
-        ensure  => 'file',
-        source  => 'puppet:///modules/catfacts/catfacts.dat',
-        require => File['/etc/catfacts'],
-    }
-    
-    package {'fortune':
-        ensure => 'installed',
+      ensure  => 'file',
+      content => file('catfacts/catfacts.dat'),
+      mode    => '0555',
+      owner   => 'root',
+      group   => 'root',
     }
 
+    package {'fortune':
+      ensure => 'installed',
+    }
 }
 

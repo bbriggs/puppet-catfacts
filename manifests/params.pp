@@ -7,5 +7,6 @@ class catfacts::params (
         'Debian': { $fortune_location = '/usr/games/fortune'
                     $mailer_location  = '/usr/sbin/sendmail'
             }
+        default:  { fail('Unsupported OS') }
     }
 }
